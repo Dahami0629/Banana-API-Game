@@ -1,0 +1,107 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap');
+
+
+body {
+    font-family: 'Fredoka', sans-serif;
+    background-image: url(8.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+
+
+.container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    margin-right: 500px;
+}
+
+
+h1 {
+    font-size: 2.5rem;
+    color: #ffeb3b;
+    text-shadow: 3px 3px 0 #3d693d, 5px 5px 0 #000;
+}
+
+
+#playerName {
+    width: 80%;
+    padding: 12px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-align: center;
+    background: #f4f4f4;
+    color: #333;
+    outline: none;
+    transition: 0.3s;
+}
+
+#playerName:focus {
+    background: #fff;
+    box-shadow: 0 0 8px #ffeb3b;
+}
+
+
+button {
+    display: block;
+    width: 90%;
+    padding: 12px;
+    margin: 10px auto;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+}
+
+
+.easy-btn {
+    background: #4CAF50;
+}
+
+.medium-btn {
+    background: #03A9F4;
+}
+
+.hard-btn {
+    background: #FF5722;
+}
+
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    button {
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
