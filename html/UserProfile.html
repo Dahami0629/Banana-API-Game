@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="UserProfile.css">
+  
+</head>
+<body>
+ 
+  <div class="background">
+    
+    <div class="profile-container">
+      
+      <div id="profileTab" class="tab-content active">
+        
+        <div class="profile-header">
+          <div class="avatar">
+            <img src="" alt="User Avatar" class="avatar-img" id="profileAvatar">
+          </div>
+          <h1 id="profileName">John Doe</h1>
+          <p id="profileEmail">john@example.com</p>
+        </div>
+
+        
+        <div class="profile-stats">
+          <div class="stat-item">
+            <span class="stat-value" id="profilePoints">1200</span>
+            <span class="stat-label">Points</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="profileAchievements">5</span>
+            <span class="stat-label">Achievements</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="profileLevels">3</span>
+            <span class="stat-label">Levels Completed</span>
+          </div>
+        </div>
+
+        
+        <div class="profile-actions">
+          <button onclick="switchTab('editTab')">Edit Profile</button>
+          <button class="logout-btn" onclick="logout()">Log Out</button>
+        </div>
+      </div>
+
+      
+      <div id="editTab" class="tab-content">
+        <h2>Edit Profile</h2>
+        <form id="profileForm">
+         
+          <input type="text" id="editName" placeholder="Enter your name">
+          <input type="email" id="editEmail" placeholder="Enter your email">
+          <input type="file" id="editAvatar" accept="image/*">
+          <div class="editbtn">
+          <button type="button" onclick="saveProfile()">Save Changes</button>
+          <button type="button" onclick="switchTab('profileTab')">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function saveProfile() {
+      const nameInput = document.getElementById('editName').value;
+      const emailInput = document.getElementById('editEmail').value;
+      const avatarInput = document.getElementById('editAvatar').files[0];
+
+      if (nameInput) document.getElementById('profileName').innerText = nameInput;
+      if (emailInput) document.getElementById('profileEmail').innerText = emailInput;
+
+      if (avatarInput) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('profileAvatar').src = e.target.result;
+        };
+        reader.readAsDataURL(avatarInput);
+      }
+
+      switchTab('profileTab');
+    }
+
+    function logout() {
+      alert("Logging out...");
+      window.location.href = "LandingPage.html";
+    }
+  </script>
+</body>
+</html>
