@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zombie City Last Survivor</title>
+  <link rel="stylesheet" href="LandingPage.css">
+</head>
+<body>
+
+  <div class="background">
+    
+    <div class="loading-bar" id="loadingBar">
+        <div id="loadingProgress"></div>
+    </div>
+
+    <div class="buttons">
+      <button id="menuBtn" class="menu-btn">Menu</button>
+        <button id="startBtn" class="start-btn">Play</button>
+        <button id="muteBtn" class="muteBtn">Mute</button> 
+       
+    </div>
+  </div>
+
+  <div id="menuModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeMenuBtn">&times;</span>
+      <h3>Menu</h3>
+      <ul>
+        <li><button id="leaderboardBtn" class="modal-btn">Leaderboard</button></li>
+        <li><button id="instructionsBtn" class="modal-btn">Game Instructions</button></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="leaderboardModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeLeaderboardBtn">&times;</span>
+      <h2>Leaderboard</h2>
+      <p>Top Players:</p>
+      <ul>
+        <li>Player 1 - 1000 points</li>
+        <li>Player 2 - 900 points</li>
+        <li>Player 3 - 800 points</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="instructionsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeInstructionsBtn">&times;</span>
+      <h2>Game Instructions</h2>
+      <p>1. Use arrow keys to move.</p>
+      <p>2. Press Space to attack.</p>
+      <p>3. Solve puzzles to progress.</p>
+    </div>
+  </div>
+
+  <audio id="backgroundMusic" loop>
+    <source src="bg-music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const menuModal = document.getElementById('menuModal');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+    const leaderboardBtn = document.getElementById('leaderboardBtn');
+    const leaderboardModal = document.getElementById('leaderboardModal');
+    const closeLeaderboardBtn = document.getElementById('closeLeaderboardBtn');
+
+    const instructionsBtn = document.getElementById('instructionsBtn');
+    const instructionsModal = document.getElementById('instructionsModal');
+    const closeInstructionsBtn = document.getElementById('closeInstructionsBtn');
+
+    const startBtn = document.getElementById('startBtn');
+    const loadingBar = document.getElementById('loadingBar');
+    const loadingProgress = document.getElementById('loadingProgress');
+
+    const muteBtn = document.getElementById('muteBtn');
+    const backgroundMusic = document.getElementById('backgroundMusic');
+
+    menuBtn.addEventListener('click', function() {
+      menuModal.style.display = 'block';
+    });
+
+    closeMenuBtn.addEventListener('click', function() {
+      menuModal.style.display = 'none';
+    });
+
+    leaderboardBtn.addEventListener('click', function() {
+      leaderboardModal.style.display = 'block';
+      menuModal.style.display = 'none';
+    });
+
+    closeLeaderboardBtn.addEventListener('click', function() {
+      leaderboardModal.style.display = 'none';
+    });
+
+    instructionsBtn.addEventListener('click', function() {
+      instructionsModal.style.display = 'block';
+      menuModal.style.display = 'none';
+    });
+
+    closeInstructionsBtn.addEventListener('click', function() {
+      instructionsModal.style.display = 'none';
+    });
+
+    startBtn.addEventListener('click', function() {
+      loadingBar.style.display = 'flex';
+      document.querySelector('.buttons').style.display = 'none';
+
+      let progress = 0;
+      let loadingInterval = setInterval(function() {
+        progress += 1;
+        loadingProgress.style.width = progress + '%';
+        if (progress >= 100) {
+          clearInterval(loadingInterval);
+          window.location.href = "SignupPage.html"; 
+        }
+      }, 30);
+    });
+
+    window.addEventListener('load', function() {
+      backgroundMusic.play().catch(error => {
+        console.log("User interaction required to play music:", error);
+      });
+    });
+
+    muteBtn.addEventListener('click', function() {
+      if (backgroundMusic.muted) {
+        backgroundMusic.muted = false;
+        muteBtn.textContent = "Mute";
+      } else {
+        backgroundMusic.muted = true;
+        muteBtn.textContent = "Unmute";
+      }
+    });
+  </script>
+</body>
+</html>
