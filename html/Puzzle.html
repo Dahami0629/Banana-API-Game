@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banana Quest - Puzzle</title>
+    <link rel="stylesheet" href="/Banana-API-Game/CSS/Puzzle.css">
+    
+</head>
+<body id="puzzleBody">
+    <div id="gameContainer" class="container">
+        <h1>🍌 Banana Quest</h1>
+        <h3 id="playerGreeting"></h3>
+        <p id="score">Score: 0</p>
+        <p id="timer">⏳ Time Left: <span id="timeLeft"></span> seconds</p>
+        <img id="puzzleImage" src="" alt="Loading puzzle...">
+        <input type="number" id="answerInput" placeholder="Your answer">
+        <button id="checkButton">Check Answer</button>
+        <p id="feedback"></p>
+    </div>
+    <div id="overlay">
+        <div id="popup">
+            <h2>⏳ Time's up! Try again?</h2>
+            <button id="tryAgainButton">Try Again</button>
+        </div>
+    </div>
+
+    <div id="zombie">
+        <img src="zombie1.png" alt="Zombie" width="50">
+    </div>
+    <div id="man">
+        <img src="man1.png" alt="Man" width="50">
+    </div>
+
+    
+    <div id="door"></div>
+    
+    <div id="zombie" class="zombie"></div>
+
+    
+    <div id="progressContainer">
+        <div id="progressBar">
+            <div id="progress"></div>
+            <div id="treasure">🏆</div>
+        </div>
+        <p id="progressText">0%</p>
+    </div>
+
+    
+    <div id="overlay">
+        <div id="popup">
+            <h2>⏳ Time's up! Try again?</h2>
+            <button id="tryAgainButton">Try Again</button>
+        </div>
+    </div>
+
+    <script>
+        let correctSolution = null;
+        let score = 0;
+        let progress = 0;
+        let difficulty = localStorage.getItem("difficulty") || "easy";
+        let playerName = localStorage.getItem("playerName") || "Adventurer";
+        let timeLeft;
+        let manPosition = 50;  
+let zombiePosition = window.innerWidth - 100; 
+const manStep = 80;  
+const zombieStep = 80; 
+
+
+function moveMan() {
+    if (manPosition < window.innerWidth - 120) { 
+        manPosition += manStep;
+        document.getElementById("man").style.transform = `translateX(${manPosition}px)`;
+    }
+}
+
+function moveZombie() {
+    if (zombiePosition - zombieStep > manPosition) { 
+        zombiePosition -= zombieStep; 
+        document.getElementById("zombie").style.transform = `translateX(${zombiePosition}px)`;
+    }
+}
+
+document.getElementById("checkButton").addEventListener("click", function() {
+    const userAnswer = parseInt(document.getElementById("answerInput").value, 10);
+    if (isNaN(userAnswer)) {
+        document.getElementById("feedback").textContent = "Enter a number!";
+        return;
+    }
+    
+    if (userAnswer === correctSolution) {
+        document.getElementById("feedback").textContent = "✅ Correct! 🌟";
+        moveMan();  
+    } else {
+        document.getElementById("feedback").textContent = "❌ Wrong answer! Try again.";
+        moveZombie();  
+    }
+});
+
+
+        document.getElementById("playerGreeting").textContent = `Welcome, ${playerName}! Your challenge awaits.`;
+
+        
+        function startTimer() {
+            clearInterval(timerInterval);
+            document.getElementById("timeLeft").textContent = timeLeft;
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById("timeLeft").textContent = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById("feedback").textContent = "⏳ Time's up! Try again.";
+                    showTryAgainPopup();
+                }
+            }, 1000);
+        }
+        
+        function moveZombieCloser() {
+            if (zombiePosition > manPosition) {
+                zombiePosition -= zombieStep; 
+                document.getElementById("zombie").style.left = `${zombiePosition}px`;
+            }
+            checkGameOver();
+        }
+
+        function moveManAway() {
+            if (manPosition < 500) {
+                manPosition += manStep;  
+                document.getElementById("man").style.left = `${manPosition}px`;
+            }
+        }
+
+        function checkGameOver() {
+            if (zombiePosition <= manPosition) {
+                document.getElementById("feedback").textContent = "❌ Game Over! The zombie caught you!";
+                showTryAgainPopup();
+            }
+        }
+
+        
+        function fetchPuzzle() {
+            fetch("https://marcconrad.com/uob/banana/api.php")
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.question && (data.solution !== undefined)) {
+                        document.getElementById("puzzleImage").src = data.question;
+                        correctSolution = data.solution;
+                        document.getElementById("feedback").textContent = "";
+                        document.getElementById("answerInput").value = "";
+                        timeLeft = difficulty === 'easy' ? 40 : difficulty === 'medium' ? 30 : 20;
+                        startTimer();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching puzzle:", error);
+                });
+        }
+
+        
+        function updateProgress(correct) {
+    if (correct) {
+        progress += difficulty === 'easy' ? 10 : difficulty === 'medium' ? 20 : 30;
+    } else {
+        progress -= 5;
+        if (progress < 0) progress = 0;
+        
+        moveZombie(); 
+
+        if (zombiePosition <= manPosition) {
+            endGame();
+        }
+    }
+    
+    document.getElementById("progress").style.height = `${progress}%`;
+    document.getElementById("progressText").textContent = `${progress}%`;
+    
+    if (progress >= 100) {
+        document.getElementById("treasure").style.display = "block";
+        document.getElementById("feedback").textContent = "🏆 You found the treasure!";
+    }
+}
+
+
+        
+        function endGame() {
+            clearInterval(timerInterval);
+            document.getElementById("feedback").textContent = "❌ Game Over! The zombie got you!";
+        }
+
+        
+        function showTryAgainPopup() {
+            document.getElementById("overlay").style.display = "flex";
+        }
+
+        
+        document.getElementById("tryAgainButton").addEventListener("click", function() {
+            document.getElementById("overlay").style.display = "none";
+            score = 0;
+            progress = 0;
+            distance = 0;
+            zombieSize = 50;
+            document.getElementById("score").textContent = `Score: ${score}`;
+            document.getElementById("progress").style.height = "0%";
+            fetchPuzzle();
+        });
+
+        
+        document.getElementById("checkButton").addEventListener("click", function() {
+            const userAnswer = parseInt(document.getElementById("answerInput").value, 10);
+            if (isNaN(userAnswer)) {
+                document.getElementById("feedback").textContent = "Enter a number!";
+                return;
+            }
+            
+            if (userAnswer === correctSolution) {
+                document.getElementById("feedback").textContent = "✅ Correct! 🌟";
+                score += difficulty === 'easy' ? 10 : difficulty === 'medium' ? 20 : 30;
+                document.getElementById("score").textContent = `Score: ${score}`;
+                updateProgress(true);
+                setTimeout(fetchPuzzle, 1000); 
+            } else {
+                document.getElementById("feedback").textContent = "❌ Wrong answer! Try again.";
+                updateProgress(false);
+            }
+        });
+
+        
+        fetchPuzzle();
+    </script>
+</body>
+</html>
