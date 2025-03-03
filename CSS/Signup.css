@@ -1,0 +1,83 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-image: url(/Banana-API-Game/Images/8.jpg);
+}
+.container {
+    background: white;
+    padding: 25px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    width: 350px;
+    text-align: center;
+    transition: 0.3s;
+}
+.container:hover {
+    transform: scale(1.05);
+}
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+.tabs button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    color: #555;
+    transition: 0.3s;
+}
+.tabs button.active {
+    color: #ff4081;
+    border-bottom: 3px solid #ff4081;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+.form {
+    display: none;
+}
+.form.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+input:focus {
+    border-color: #ff4081;
+    box-shadow: 0 0 8px rgba(255, 64, 129, 0.2);
+}
+button {
+    width: 100%;
+    padding: 12px;
+    background: #ff4081;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+button:hover {
+    background: #e60067;
+}
