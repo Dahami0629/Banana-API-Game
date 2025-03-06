@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banana Quest - Puzzle</title>
+    <link rel="stylesheet" href="/Banana-API-Game/CSS/PuzzleNew.css">
+</head>
+<body id="puzzleBody">
+    <div id="gameContainer" class="container">
+        <h1>🍌 Banana Quest</h1>
+        <h3 id="playerGreeting"></h3>
+        <p id="score">Score: 0</p>
+        <p id="timer">⏳ Time Left: <span id="timeLeft"></span> seconds</p>
+        <img id="puzzleImage" src="" alt="Loading puzzle...">
+        <input type="number" id="answerInput" placeholder="Your answer">
+        <button id="checkButton">Check Answer</button>
+        <p id="feedback"></p>
+    </div>
+    <div id="overlay">
+        <div id="popup">
+            <h2>⏳ Time's up! Try again?</h2>
+            <button id="tryAgainButton">Try Again</button>
+        </div>
+    </div>
+
+    <div id="zombie">
+        <img src="zombie1.png" alt="Zombie" width="100px">
+    </div>
+    <div id="man">
+        <img src="man1.png" alt="Man" width="100px">
+    </div>
+
+    <div id="door"></div>
+    <div id="zombie" class="zombie"></div>
+    <div id="progressContainer">
+        <div id="progressBar">
+            <div id="progress" style="width: 0%;"></div>
+            <div id="treasure">🏆</div>
+        </div>
+        <p id="progressText">0%</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
