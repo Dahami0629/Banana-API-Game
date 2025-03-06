@@ -5,11 +5,11 @@ let difficulty = localStorage.getItem("difficulty") || "easy";
 let playerName = localStorage.getItem("playerName") || "Adventurer";
 let timeLeft;
 let manPosition = 50;  
-let zombiePosition = 0; // Zombie starts from the left corner
+let zombiePosition = 0; 
 const manStep = 80;  
 const zombieStep = 80; 
 
-// Initial position of the man and zombie, fixed for clarity
+
 document.getElementById("man").style.transform = `translateX(${manPosition}px)`;
 document.getElementById("zombie").style.transform = `translateX(${zombiePosition}px)`;
 
@@ -21,7 +21,7 @@ function moveMan() {
 }
 
 function moveZombie() {
-    if (zombiePosition < manPosition) {  // Zombie moves towards the man (if it is to the left)
+    if (zombiePosition < manPosition) {  
         zombiePosition += zombieStep; 
         document.getElementById("zombie").style.transform = `translateX(${zombiePosition}px)`;
     }
@@ -38,14 +38,14 @@ document.getElementById("checkButton").addEventListener("click", function() {
         document.getElementById("feedback").textContent = "✅ Correct! 🌟";
         score += difficulty === 'easy' ? 10 : difficulty === 'medium' ? 20 : 30;
         document.getElementById("score").textContent = `Score: ${score}`;
-        moveMan();  // Man moves forward one step on correct answer
-        updateProgress(true);  // Update progress bar on correct answer
+        moveMan();  
+        updateProgress(true);  
     } else {
         document.getElementById("feedback").textContent = "❌ Wrong answer! Try again.";
-        updateProgress(false);  // Update progress on wrong answer
+        updateProgress(false);  
     }
 
-    // Immediately fetch the next puzzle after an answer, regardless of correctness
+    
     fetchPuzzle();
 });
 
@@ -93,36 +93,42 @@ function fetchPuzzle() {
 
 
 function updateProgress(correct) {
-    // Adjust progress increment based on the difficulty level
+    
     if (correct) {
         progress += difficulty === 'easy' ? 10 : difficulty === 'medium' ? 20 : 30;
     } else {
         progress -= 5;
         if (progress < 0) progress = 0;
 
-        moveZombie(); // Zombie moves forward one step if the answer is incorrect
+        moveZombie(); 
 
         if (zombiePosition >= manPosition) {
             endGame();
         }
     }
 
-    // Ensure progress doesn't go over 100%
+    
     if (progress > 100) progress = 100;
 
-    // Dynamically change progress bar color based on progress
+    
     let progressBarColor = 'red';
     if (progress >= 80) {
-        progressBarColor = 'green';  // High progress
+        progressBarColor = 'green';  
     } else if (progress >= 50) {
-        progressBarColor = 'yellow';  // Medium progress
+        progressBarColor = 'yellow';  
     }
 
-    // Update progress bar width to fill from left to right
+    
     document.getElementById("progress").style.width = `${progress}%`;
-    document.getElementById("progress").style.backgroundColor = progressBarColor;  // Apply dynamic color
+    document.getElementById("progress").style.backgroundColor = progressBarColor;  
     document.getElementById("progressText").textContent = `${progress}%`;
 
+    function moveZombie() {
+        if (zombiePosition < manPosition) {
+            zombiePosition += zombieStep; // Move zombie forward
+            document.getElementById("zombie").style.transform = `translateX(${zombiePosition}px)`;
+        }
+    }
     if (progress >= 100) {
         document.getElementById("treasure").style.display = "block";
         document.getElementById("feedback").textContent = "🏆 You found the treasure!";
@@ -145,9 +151,8 @@ document.getElementById("tryAgainButton").addEventListener("click", function() {
     distance = 0;
     zombieSize = 50;
     document.getElementById("score").textContent = `Score: ${score}`;
-    document.getElementById("progress").style.width = "0%";  // Reset progress bar width
+    document.getElementById("progress").style.width = "0%";  
     fetchPuzzle();
 });
 
-// Initial fetch for the first puzzle
 fetchPuzzle();

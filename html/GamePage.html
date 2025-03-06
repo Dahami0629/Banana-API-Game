@@ -18,21 +18,6 @@
         <button class="hard-btn" onclick="selectLevel('hard')">Hard</button>
     </div>
 
-    <script>
-        function selectLevel(difficulty) {
-            const playerName = document.getElementById("playerName").value.trim();
-            if (!playerName) {
-                alert("Please enter your name before starting!");
-                return;
-            }
-
-            
-            localStorage.setItem("playerName", playerName);
-            localStorage.setItem("difficulty", difficulty);
-
-            
-            window.location.href = "puzzle.html";
-        }
-    </script>
+    <script src="/Banana-API-Game/JS/Game.js"></script>
 </body>
 </html>

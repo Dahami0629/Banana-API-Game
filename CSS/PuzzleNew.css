@@ -2,7 +2,7 @@
 body {
     font-family: 'Arial', sans-serif;
     text-align: center;
-    background: url('/Banana-API-Game/Images new/Frame\ 1.png') no-repeat center center fixed;
+    background: url('/Banana-API-Game/Images new/Frame 1.png') no-repeat center center fixed;
     background-size: cover;
     color: white;
     margin: 0;
@@ -10,33 +10,48 @@ body {
     overflow: hidden;
 }
 
+/* Game Container */
 #gameContainer {
     margin: auto;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
-    width: 50%;
-    height: 450px; /* Decreased height */
-    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 12px;
+    width: 60%;
+    max-width: 700px;
+    height: 500px; /* Increased height */
+    box-shadow: 0px 0px 25px rgba(255, 215, 0, 0.9);
 }
 
 /* Puzzle Image */
 #puzzleImage {
     width: 350px;
     height: auto;
-    margin: 20px 0;
+    margin: 20px auto;
     border: 4px solid #f1c40f;
     border-radius: 10px;
+    display: block;
 }
 
 /* Input and Buttons */
+#inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
 #answerInput, #checkButton {
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
-    border-radius: 5px;
-    margin: 5px;
-    position: relative;
-    top: -40px; /* Moves the input and button slightly upwards */
+    border-radius: 8px;
+    margin: 5px 0;
+    border: none;
+    width: 80%;
+    max-width: 300px;
+}
+
+#answerInput {
+    text-align: center;
 }
 
 button {
@@ -45,21 +60,23 @@ button {
     border: none;
     color: black;
     font-weight: bold;
+    transition: background 0.3s ease-in-out, transform 0.2s;
 }
 
 button:hover {
     background: #ffcc00;
+    transform: scale(1.05);
 }
 
 /* Game Area */
 #gameArea {
     position: relative;
     width: 90%;
-    height: 200px;
+    height: 220px;
     margin: 20px auto;
     border: 2px solid white;
     background: #222;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
 }
 
@@ -74,55 +91,44 @@ button:hover {
 #man {
     left: 50%;
     transform: translateX(-50%);
-    width: 10px; /* Increase size */
+    width: 50px; /* Increased size */
 }
 
 /* Zombie */
 #zombie {
     left: 10px;
-    width: 10px; /* Increase size */
+    width: 50px; /* Increased size */
 }
-
 
 /* Door */
 #door {
     position: absolute;
     right: 20px;
     bottom: 20px;
-    width: 60px;
-    height: 100px;
+    width: 70px;
+    height: 110px;
     background: brown;
     border-radius: 5px;
-    box-shadow: 0px 0px 15px rgba(255, 165, 0, 0.8);
+    box-shadow: 0px 0px 15px rgba(255, 165, 0, 0.9);
 }
 
-/* Container for the progress bar */
+/* Progress Bar */
 #progressContainer {
-    width: 50%;
+    width: 60%;
     height: 30px;
     margin: 20px auto;
     border-radius: 5px;
     overflow: hidden;
     position: relative;
+    background: #333;
 }
 
-/* The progress bar that will fill */
 #progress {
-    width: 0%; /* Starts at 0% width */
+    width: 0%;
     height: 100%;
-    background-color: red; /* Initial color */
+    background-color: red;
     border-radius: 5px;
 }
-
-#progressBar {
-    width: 100%;
-    height: 20px;
-    background: #222;
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
-}
-
 
 /* Overlay (Try Again Popup) */
 #overlay {
@@ -143,15 +149,17 @@ button:hover {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+    box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.7);
 }
 
 #tryAgainButton {
-    padding: 10px 15px;
+    padding: 12px 18px;
     font-size: 16px;
     background: red;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 #tryAgainButton:hover {
