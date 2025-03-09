@@ -57,86 +57,10 @@
   </div>
 
   <audio id="backgroundMusic" loop>
-    <source src="bg-music.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
+    <source src="/Banana-API-Game/bg-music.mp3" type="audio/mpeg">
+    
   </audio>
 
-  <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const menuModal = document.getElementById('menuModal');
-    const closeMenuBtn = document.getElementById('closeMenuBtn');
-
-    const leaderboardBtn = document.getElementById('leaderboardBtn');
-    const leaderboardModal = document.getElementById('leaderboardModal');
-    const closeLeaderboardBtn = document.getElementById('closeLeaderboardBtn');
-
-    const instructionsBtn = document.getElementById('instructionsBtn');
-    const instructionsModal = document.getElementById('instructionsModal');
-    const closeInstructionsBtn = document.getElementById('closeInstructionsBtn');
-
-    const startBtn = document.getElementById('startBtn');
-    const loadingBar = document.getElementById('loadingBar');
-    const loadingProgress = document.getElementById('loadingProgress');
-
-    const muteBtn = document.getElementById('muteBtn');
-    const backgroundMusic = document.getElementById('backgroundMusic');
-
-    menuBtn.addEventListener('click', function() {
-      menuModal.style.display = 'block';
-    });
-
-    closeMenuBtn.addEventListener('click', function() {
-      menuModal.style.display = 'none';
-    });
-
-    leaderboardBtn.addEventListener('click', function() {
-      leaderboardModal.style.display = 'block';
-      menuModal.style.display = 'none';
-    });
-
-    closeLeaderboardBtn.addEventListener('click', function() {
-      leaderboardModal.style.display = 'none';
-    });
-
-    instructionsBtn.addEventListener('click', function() {
-      instructionsModal.style.display = 'block';
-      menuModal.style.display = 'none';
-    });
-
-    closeInstructionsBtn.addEventListener('click', function() {
-      instructionsModal.style.display = 'none';
-    });
-
-    startBtn.addEventListener('click', function() {
-      loadingBar.style.display = 'flex';
-      document.querySelector('.buttons').style.display = 'none';
-
-      let progress = 0;
-      let loadingInterval = setInterval(function() {
-        progress += 1;
-        loadingProgress.style.width = progress + '%';
-        if (progress >= 100) {
-          clearInterval(loadingInterval);
-          window.location.href = "SignupPage.html"; 
-        }
-      }, 30);
-    });
-
-    window.addEventListener('load', function() {
-      backgroundMusic.play().catch(error => {
-        console.log("User interaction required to play music:", error);
-      });
-    });
-
-    muteBtn.addEventListener('click', function() {
-      if (backgroundMusic.muted) {
-        backgroundMusic.muted = false;
-        muteBtn.textContent = "Mute";
-      } else {
-        backgroundMusic.muted = true;
-        muteBtn.textContent = "Unmute";
-      }
-    });
-  </script>
-</body>
+  <script src="/Banana-API-Game/JS/Landing.js"></script>
+<body>
 </html>
