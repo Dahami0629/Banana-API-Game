@@ -19,6 +19,12 @@
                 <input type="text" placeholder="Username" required>
                 <input type="password" placeholder="Password" required>
                 <button type="submit">Login</button>
+
+            <div class="Createbtn"></div>
+                <button type="create">Don't you have an account ? Click Here <span class="switch" onclick="showTab('signup')">Click here</span></button>
+                
+                
+            </div>
             </form>
             <form id="signupForm" class="form">
                 <h2>Signup</h2>
@@ -29,21 +35,8 @@
             </form>
         </div>
     </div>
-    <script>
-        function showForm(type) {
-            document.getElementById('loginForm').classList.remove('active');
-            document.getElementById('signupForm').classList.remove('active');
-            document.getElementById('loginTab').classList.remove('active');
-            document.getElementById('signupTab').classList.remove('active');
-            
-            if (type === 'login') {
-                document.getElementById('loginForm').classList.add('active');
-                document.getElementById('loginTab').classList.add('active');
-            } else {
-                document.getElementById('signupForm').classList.add('active');
-                document.getElementById('signupTab').classList.add('active');
-            }
-        }
+    <script src="/Banana-API-Game/JS/Signup.js">
+     
     </script>
 </body>
 </html>
