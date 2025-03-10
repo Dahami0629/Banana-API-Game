@@ -1,18 +1,18 @@
-document.getElementById("signupBtn").addEventListener("click", function () {
-    showForm("signup"); // Calls showForm function to switch to the signup tab
-});
+function showForm(form) {
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const loginTab = document.getElementById('loginTab');
+    const signupTab = document.getElementById('signupTab');
 
-function showForm(type) {
-    // Remove 'active' class from all forms and tabs
-    document.querySelectorAll(".form").forEach(form => form.classList.remove("active"));
-    document.querySelectorAll(".tabs button").forEach(btn => btn.classList.remove("active"));
-
-    if (type === "login") {
-        document.getElementById("loginForm").classList.add("active");
-        document.getElementById("loginTab").classList.add("active");
-       
+    if (form === 'login') {
+        loginForm.classList.add('active');
+        signupForm.classList.remove('active');
+        loginTab.classList.add('active');
+        signupTab.classList.remove('active');
     } else {
-        document.getElementById("signupForm").classList.add("active");
-        document.getElementById("signupTab").classList.add("active");
+        signupForm.classList.add('active');
+        loginForm.classList.remove('active');
+        signupTab.classList.add('active');
+        loginTab.classList.remove('active');
     }
 }

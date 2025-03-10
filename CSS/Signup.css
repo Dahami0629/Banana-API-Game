@@ -21,7 +21,7 @@ body {
     box-shadow: 0 8px 16px rgba(0, 255, 0, 0.3);
     border-radius: 12px;
     width: 650px;
-    height: 400px;
+    height: 420px;
     text-align: center;
     transition: 0.3s;
     border: 3px solid #31a731;
@@ -80,7 +80,7 @@ body {
 }
 
 input {
-    width: 100%;
+    width: 630px;
     padding: 10px;
     margin: 10px 0;
     border: 2px solid #31a731;
