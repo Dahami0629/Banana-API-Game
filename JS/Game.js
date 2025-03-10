@@ -13,4 +13,7 @@ function selectLevel(level) {
 }
 
        
-    
+function selectLevel(level) {
+    localStorage.setItem("selectedLevel", level);
+    window.location.href = "/Banana-API-Game/puzzle.html";
+}
