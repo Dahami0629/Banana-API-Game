@@ -1,57 +1,36 @@
 let correctSolution = null;
 let score = 0;
 let progress = 0;
-let difficulty = localStorage.getItem("difficulty") || "easy";
-let playerName = localStorage.getItem("playerName") || "Adventurer";
+let difficulty = localStorage.getItem("selectedLevel") || "easy";  
+let playerName = localStorage.getItem("playerName") || "Adventurer";  
 let timeLeft;
+let timerInterval;
 let manPosition = 50;  
-let zombiePosition = 0; 
+let zombiePosition = 0;  
 const manStep = 80;  
-const zombieStep = 80; 
-
+const zombieStep = 80;  
 
 document.getElementById("man").style.transform = `translateX(${manPosition}px)`;
 document.getElementById("zombie").style.transform = `translateX(${zombiePosition}px)`;
+document.getElementById("playerGreeting").textContent = `Welcome, ${playerName}! Your challenge awaits.`;
 
+// 🏃 Move the man forward
 function moveMan() {
-    if (manPosition < window.innerWidth - 120) { 
+    if (manPosition < window.innerWidth - 120) {
         manPosition += manStep;
         document.getElementById("man").style.transform = `translateX(${manPosition}px)`;
     }
 }
 
+// 🧟 Move the zombie closer
 function moveZombie() {
-    if (zombiePosition < manPosition) {  
-        zombiePosition += zombieStep; 
+    if (zombiePosition < manPosition) {
+        zombiePosition += zombieStep;
         document.getElementById("zombie").style.transform = `translateX(${zombiePosition}px)`;
     }
 }
 
-document.getElementById("checkButton").addEventListener("click", function() {
-    const userAnswer = parseInt(document.getElementById("answerInput").value, 10);
-    if (isNaN(userAnswer)) {
-        document.getElementById("feedback").textContent = "Enter a number!";
-        return;
-    }
-
-    if (userAnswer === correctSolution) {
-        document.getElementById("feedback").textContent = "✅ Correct! 🌟";
-        score += difficulty === 'easy' ? 10 : difficulty === 'medium' ? 20 : 30;
-        document.getElementById("score").textContent = `Score: ${score}`;
-        moveMan();  
-        updateProgress(true);  
-    } else {
-        document.getElementById("feedback").textContent = "❌ Wrong answer! Try again.";
-        updateProgress(false);  
-    }
-
-    
-    fetchPuzzle();
-});
-
-document.getElementById("playerGreeting").textContent = `Welcome, ${playerName}! Your challenge awaits.`;
-
-
+// ⏳ Start the timer
 function startTimer() {
     clearInterval(timerInterval);
     document.getElementById("timeLeft").textContent = timeLeft;
@@ -66,13 +45,7 @@ function startTimer() {
     }, 1000);
 }
 
-function checkGameOver() {
-    if (zombiePosition >= manPosition) {
-        document.getElementById("feedback").textContent = "❌ Game Over! The zombie caught you!";
-        showTryAgainPopup();
-    }
-}
-
+// 🧩 Fetch a new puzzle
 function fetchPuzzle() {
     fetch("https://marcconrad.com/uob/banana/api.php")
         .then(response => response.json())
@@ -82,7 +55,9 @@ function fetchPuzzle() {
                 correctSolution = data.solution;
                 document.getElementById("feedback").textContent = "";
                 document.getElementById("answerInput").value = "";
-                timeLeft = difficulty === 'easy' ? 40 : difficulty === 'medium' ? 30 : 20;
+                
+                // Set the time based on difficulty
+                timeLeft = difficulty === "easy" ? 40 : difficulty === "medium" ? 30 : 20;
                 startTimer();
             }
         })
@@ -91,68 +66,81 @@ function fetchPuzzle() {
         });
 }
 
+// ✅ Check answer
+document.getElementById("checkButton").addEventListener("click", function () {
+    const userAnswer = parseInt(document.getElementById("answerInput").value, 10);
+    if (isNaN(userAnswer)) {
+        document.getElementById("feedback").textContent = "Enter a number!";
+        return;
+    }
 
+    if (userAnswer === correctSolution) {
+        document.getElementById("feedback").textContent = "✅ Correct! 🌟";
+        score += difficulty === "easy" ? 10 : difficulty === "medium" ? 20 : 30;
+        document.getElementById("score").textContent = `Score: ${score}`;
+        moveMan();
+        updateProgress(true);
+    } else {
+        document.getElementById("feedback").textContent = "❌ Wrong answer! Try again.";
+        updateProgress(false);
+    }
+
+    fetchPuzzle();
+});
+
+// 📊 Update progress
 function updateProgress(correct) {
-    
     if (correct) {
-        progress += difficulty === 'easy' ? 10 : difficulty === 'medium' ? 20 : 30;
+        progress += difficulty === "easy" ? 10 : difficulty === "medium" ? 20 : 30;
     } else {
         progress -= 5;
         if (progress < 0) progress = 0;
-
-        moveZombie(); 
+        moveZombie();
 
         if (zombiePosition >= manPosition) {
             endGame();
         }
     }
 
-    
     if (progress > 100) progress = 100;
 
-    
-    let progressBarColor = 'red';
-    if (progress >= 80) {
-        progressBarColor = 'green';  
-    } else if (progress >= 50) {
-        progressBarColor = 'yellow';  
-    }
-
+    let progressBarColor = progress >= 80 ? "green" : progress >= 50 ? "yellow" : "red";
     
     document.getElementById("progress").style.width = `${progress}%`;
-    document.getElementById("progress").style.backgroundColor = progressBarColor;  
+    document.getElementById("progress").style.backgroundColor = progressBarColor;
     document.getElementById("progressText").textContent = `${progress}%`;
 
-    function moveZombie() {
-        if (zombiePosition < manPosition) {
-            zombiePosition += zombieStep; // Move zombie forward
-            document.getElementById("zombie").style.transform = `translateX(${zombiePosition}px)`;
-        }
-    }
     if (progress >= 100) {
         document.getElementById("treasure").style.display = "block";
         document.getElementById("feedback").textContent = "🏆 You found the treasure!";
     }
 }
 
+// ❌ End game if zombie catches the player
 function endGame() {
     clearInterval(timerInterval);
     document.getElementById("feedback").textContent = "❌ Game Over! The zombie got you!";
+    showTryAgainPopup();
 }
 
+// 🔄 Show "Try Again" popup
 function showTryAgainPopup() {
     document.getElementById("overlay").style.display = "flex";
 }
 
-document.getElementById("tryAgainButton").addEventListener("click", function() {
+// 🔁 Reset game when "Try Again" is clicked
+document.getElementById("tryAgainButton").addEventListener("click", function () {
     document.getElementById("overlay").style.display = "none";
     score = 0;
     progress = 0;
-    distance = 0;
-    zombieSize = 50;
+    manPosition = 50;
+    zombiePosition = 0;
     document.getElementById("score").textContent = `Score: ${score}`;
     document.getElementById("progress").style.width = "0%";  
+    document.getElementById("man").style.transform = `translateX(${manPosition}px)`;
+    document.getElementById("zombie").style.transform = `translateX(${zombiePosition}px)`;
     fetchPuzzle();
 });
 
+// 🚀 Start the game
 fetchPuzzle();
