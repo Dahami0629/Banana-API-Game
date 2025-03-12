@@ -8,7 +8,7 @@ function selectLevel(level) {
     localStorage.setItem("playerName", nameInput);
     localStorage.setItem("difficulty", level);
 
-    // Redirect to puzzleNew.html with difficulty as a URL parameter
+    
     window.location.href = `PuzzleNew.html?difficulty=${level}`;
 }
 
