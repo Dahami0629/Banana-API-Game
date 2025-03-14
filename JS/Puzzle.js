@@ -113,7 +113,7 @@ function updateShields() {
     shieldsContainer.innerHTML = "";
     for (let i = 0; i < shields; i++) {
         let shieldImg = document.createElement("img");
-        shieldImg.src = "../ImagesNew/shields.png";
+        shieldImg.src = "../assests/ImagesNew/shields.png";
         shieldImg.alt = "Shield";
         shieldImg.className = "shield";
         shieldsContainer.appendChild(shieldImg);

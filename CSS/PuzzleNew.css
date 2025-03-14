@@ -1,8 +1,7 @@
-/* General Styling */
 body {
     font-family: 'Arial', sans-serif;
     text-align: center;
-    background: url('/Banana-API-Game/Images new/Frame 1.png') no-repeat center center fixed;
+    background: url('/assests/ImagesNew/Frame\ 1.png') no-repeat center center fixed;
     background-size: cover;
     color: white;
     margin: 0;
@@ -10,19 +9,19 @@ body {
     overflow: hidden;
 }
 
-/* Game Container */
 #gameContainer {
-    margin: auto;
+    position: absolute;
+    margin-top: 0.5%;
+    margin-left: 30%;
     padding: 20px;
     background: rgba(0, 0, 0, 0.85);
     border-radius: 12px;
     width: 60%;
     max-width: 700px;
-    height: 500px; /* Increased height */
+    height: 500px;
     box-shadow: 0px 0px 25px rgba(255, 215, 0, 0.9);
 }
 
-/* Puzzle Image */
 #puzzleImage {
     width: 350px;
     height: auto;
@@ -32,7 +31,6 @@ body {
     display: block;
 }
 
-/* Input and Buttons */
 #inputContainer {
     display: flex;
     flex-direction: column;
@@ -54,7 +52,7 @@ body {
     text-align: center;
 }
 
-button {
+#checkButton {
     cursor: pointer;
     background: #f1c40f;
     border: none;
@@ -63,105 +61,86 @@ button {
     transition: background 0.3s ease-in-out, transform 0.2s;
 }
 
-button:hover {
+#checkButton:hover {
     background: #ffcc00;
-    transform: scale(1.05);
+    transform: scale(1.01);
 }
 
-/* Game Area */
-#gameArea {
-    position: relative;
-    width: 90%;
-    height: 220px;
-    margin: 20px auto;
-    border: 2px solid white;
-    background: #222;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-/* Characters */
 #man, #zombie {
+    left: -3%;
     position: absolute;
     bottom: 20px;
+    width: 50px;
     transition: transform 0.5s ease-in-out;
 }
 
-/* Man (Player) */
-#man {
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px; /* Increased size */
-}
-
-/* Zombie */
-#zombie {
-    left: 10px;
-    width: 50px; /* Increased size */
-}
-
-/* Door */
-#door {
+#car {
+    right: 0%;
     position: absolute;
-    right: 20px;
-    bottom: 20px;
-    width: 70px;
-    height: 110px;
-    background: brown;
-    border-radius: 5px;
-    box-shadow: 0px 0px 15px rgba(255, 165, 0, 0.9);
+    bottom: -40px;
+    transition: transform 0.5s ease-in-out;
+} 
+
+#feedback {
+    color: #ddb115;
 }
 
-/* Progress Bar */
-#progressContainer {
-    width: 60%;
-    height: 30px;
-    margin: 20px auto;
-    border-radius: 5px;
-    overflow: hidden;
-    position: relative;
-    background: #333;
-}
-
-#progress {
-    width: 0%;
-    height: 100%;
-    background-color: red;
-    border-radius: 5px;
-}
-
-/* Overlay (Try Again Popup) */
-#overlay {
+.popup {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.742);
+    display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
-#popup {
-    background: white;
-    color: black;
+.popup-content {
+    background: rgb(246, 243, 243);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.7);
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Bangers', cursive;
+    font-size: 20px;
+    color: #010101;
 }
 
-#tryAgainButton {
-    padding: 12px 18px;
-    font-size: 16px;
-    background: red;
-    color: white;
+.popup-content button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 18px;
     border: none;
+    background: #1fa648;
+    color: white;
     cursor: pointer;
     border-radius: 5px;
+    transition: background 0.3s ease-in-out;
 }
 
-#tryAgainButton:hover {
-    background: darkred;
+.popup-content button:hover {
+    background: #dd2c15;
+}
+
+#shieldsContainer {
+    position: absolute;
+    top: 4%;
+    left: 2%;
+    background:rgba(0, 0, 0, 0.85);
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.shield {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    margin-top: 5px;
 }
