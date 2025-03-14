@@ -20,6 +20,26 @@ body {
     position: relative;
 }
 
+/* Back to Home Button */
+.back-btn {
+    position: absolute;
+    bottom: 270px;
+    font-size: 30px;
+    margin-left: 900px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    width: 450px;
+    height: 100px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
 
 
 .container {
