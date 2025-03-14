@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banana Quest - Puzzle</title>
-    <link rel="stylesheet" href="/Banana-API-Game/CSS/PuzzleNew.css">
+    <link rel="stylesheet" href="../CSS/PuzzleNew.css">
 </head>
 <body id="puzzleBody">
     <div id="gameContainer" class="container">
@@ -17,30 +17,26 @@
         <button id="checkButton">Check Answer</button>
         <p id="feedback"></p>
     </div>
-    <div id="overlay">
-        <div id="popup">
-            <h2>⏳ Time's up! Try again?</h2>
-            <button id="tryAgainButton">Try Again</button>
+
+    <div id="popupMessage" class="popup" style="display: none;">
+        <div class="popup-content">
+            <p id="popupText"></p>
+            <button id="popupOkButton">Ok</button>
         </div>
     </div>
+    
+    <div id="shieldsContainer"></div>
 
     <div id="zombie">
-        <img src="/Banana-API-Game/Images new/zombie1.png" alt="Zombie" width="100px">
+        <img src="../ImagesNew/zombie1.png" alt="Zombie" width="140px">
     </div>
     <div id="man">
-        <img src="/Banana-API-Game/Images new/man1.png" alt="Man" width="100px">
+        <img src="../ImagesNew/man1.png" alt="Man" width="140px">
+    </div>
+    <div id="car">
+        <img src="../ImagesNew/car.png" alt="car" width="250px">
     </div>
 
-    <div id="door"></div>
-    <div id="zombie" class="zombie"></div>
-    <div id="progressContainer">
-        <div id="progressBar">
-            <div id="progress" style="width: 0%;"></div>
-            <div id="treasure">🏆</div>
-        </div>
-        <p id="progressText">0%</p>
-    </div>
-
-    <script src="/Banana-API-Game/JS/Puzzle.js"></script>
+    <script src="../JS/Puzzle.js"></script>
 </body>
 </html>
