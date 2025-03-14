@@ -18,7 +18,7 @@ body {
 
 .background {
     position: relative;
-    background-image: url("/assests/ImagesNew/Frame\ 2.jpg");
+    background-image: url("/assests/ImagesNew/Desktop2.jpg");
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -57,7 +57,7 @@ body {
 }
 
 .start-btn, .menu-btn {
-    padding: 6px 25px;
+    padding: 6px 15px;
     font-size: 20px;
     border: 2px solid #0a0909;
     background-color: yellow;
@@ -70,6 +70,7 @@ body {
     animation: flicker 1s infinite;
     margin-right: 50px;
     margin-top: 22px;
+    
     
 }
 .menu-btn{
