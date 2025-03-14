@@ -22,3 +22,6 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     event.preventDefault(); 
     window.location.href = "GamePage.html"; 
 });
+function goHome() {
+    window.location.href = "/html/LandingPage.html"; 
+}
