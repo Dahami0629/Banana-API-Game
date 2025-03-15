@@ -20,11 +20,11 @@ body {
     position: relative;
 }
 
-/* Back to Home Button */
+
 .back-btn {
     position: absolute;
     bottom: 270px;
-    font-size: 30px;
+    font-size: 60px;
     margin-left: 900px;
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
