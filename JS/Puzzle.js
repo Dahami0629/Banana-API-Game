@@ -178,6 +178,7 @@ function resetGame() {
 }
 function goBack() {
     window.history.back();
+    indow.location.href = "../html/GamePage.html";
 }
 
 function logout() {

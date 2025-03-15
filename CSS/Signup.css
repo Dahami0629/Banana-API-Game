@@ -10,22 +10,24 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('/assests/ImagesNew/Frame\ 4.jpg');
+    background-image: url('/assests/ImagesNew/Frame5.jpg');
     background-size: cover;
     background-position: center;
 }
 
 .container {
-    background: #222;
-    padding: 25px;
+    backdrop-filter: blur(1px);
+  background: rgba(227, 224, 224, 0.552);
+    
     box-shadow: 0 8px 16px rgba(0, 255, 0, 0.3);
     border-radius: 12px;
     width: 650px;
-    height: 420px;
+    height: 500px;
     text-align: center;
     transition: 0.3s;
     border: 3px solid #31a731;
-    margin-right: 600px;
+    margin-right: 10px;
+    margin-top: 100px;
 }
 
 .container:hover {
@@ -50,7 +52,7 @@ body {
     background: transparent;
     cursor: pointer;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 24px;
     color: #a8ff60;
     transition: 0.3s;
 }
@@ -80,7 +82,7 @@ body {
 }
 
 input {
-    width: 630px;
+    width: 600px;
     padding: 10px;
     margin: 10px 0;
     border: 2px solid #31a731;
@@ -96,7 +98,7 @@ input:focus {
 }
 
 button {
-    width: 100%;
+    width: 50%;
     padding: 12px;
     background: #31a731;
     color: white;
