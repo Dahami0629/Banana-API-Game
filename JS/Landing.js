@@ -58,11 +58,16 @@ const menuBtn = document.getElementById('menuBtn');
       }, 30);
     });
 
-    window.addEventListener('load', function() {
-      backgroundMusic.play().catch(error => {
-        console.log("User interaction required to play music:", error);
-      });
+   // const backgroundMusic = document.getElementById('backgroundMusic');
+
+document.body.addEventListener('click', function() {
+  if (backgroundMusic.paused) {
+    backgroundMusic.play().catch(error => {
+      console.log("Autoplay blocked:", error);
     });
+  }
+});
+
 
     muteBtn.addEventListener('click', function() {
       if (backgroundMusic.muted) {
