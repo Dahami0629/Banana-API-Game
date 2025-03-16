@@ -14,7 +14,7 @@ const menuBtn = document.getElementById('menuBtn');
     const loadingBar = document.getElementById('loadingBar');
     const loadingProgress = document.getElementById('loadingProgress');
 
-    const muteBtn = document.getElementById('muteBtn');
+     const muteBtn = document.getElementById('muteBtn');
     const backgroundMusic = document.getElementById('backgroundMusic');
 
     menuBtn.addEventListener('click', function() {
@@ -53,12 +53,15 @@ const menuBtn = document.getElementById('menuBtn');
         loadingProgress.style.width = progress + '%';
         if (progress >= 100) {
           clearInterval(loadingInterval);
+          
           window.location.href = "SignupPage.html"; 
         }
       }, 30);
     });
 
-   // const backgroundMusic = document.getElementById('backgroundMusic');
+   //const backgroundMusic = document.getElementById('backgroundMusic');
+
+  
 
 document.body.addEventListener('click', function() {
   if (backgroundMusic.paused) {
