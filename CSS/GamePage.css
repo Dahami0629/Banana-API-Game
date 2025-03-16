@@ -4,7 +4,7 @@
 
 body {
     font-family: 'Fredoka', sans-serif;
-    background-image: url("/assests/ImagesNew/8.jpg");
+    background-image: url("/assests/ImagesNew/Frame7.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -20,27 +20,18 @@ body {
     position: relative;
 }
 
-
-.back-btn {
+.back-icon {
     position: absolute;
-    bottom: 270px;
-    font-size: 60px;
-    margin-left: 900px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    width: 450px;
-    height: 100px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: 0.3s;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    text-decoration: none;
+    color: rgb(241, 236, 236);
 }
 
-.back-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+.back-icon:hover {
+    color: gray;
 }
-
 
 .container {
     background: rgba(0, 0, 0, 0.7);
@@ -50,7 +41,8 @@ body {
     width: 100%;
     max-width: 500px;
     position: relative;
-    margin-right: 500px;
+    margin-right: 80px;
+    margin-top: 200px;
 }
 
 

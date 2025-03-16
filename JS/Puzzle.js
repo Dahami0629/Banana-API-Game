@@ -14,6 +14,8 @@ let zombiePosition = 50;
 const manStep = 80;
 const zombieStep = 80;
 
+
+
 document.getElementById("man").style.transform = `translateX(${manPosition}px)`;
 document.getElementById("zombie").style.transform = `translateX(${zombiePosition}px)`;
 document.getElementById("playerGreeting").textContent = `Welcome, ${playerName}! Your challenge awaits.`;
