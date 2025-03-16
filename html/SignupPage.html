@@ -14,7 +14,6 @@
         </div>
         
         <div class="form-container">
-           
             <form id="loginForm" class="form active">
                 <h2>Login</h2>
                 <input type="text" placeholder="Username" required>
@@ -25,10 +24,8 @@
                     <button type="button" onclick="showForm('signup')">Don't have an account? <span class="switch">Click here</span></button>
                 </div>
                 <br>
-                
                 <button type="button" class="back-btn" onclick="goHome()">Back to Home</button>
             </form>
-
             
             <form id="signupForm" class="form">
                 <h2>Signup</h2>
@@ -41,13 +38,18 @@
                     <button type="button" onclick="showForm('login')">Already have an account? <span class="switch">Click here</span></button>
                 </div>
                 <br>
-                
                 <button type="button" class="back-btn" onclick="goHome()">Back to Home</button>
             </form>
         </div>
     </div>
 
-    <script src="/JS/Signup.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     
+    
+    <script src="../config/config.js"></script>
+    
+    <script src="../JS/Signup.js"></script>
 </body>
 </html>
