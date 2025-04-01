@@ -1,8 +1,9 @@
+let userId = null;
+let username = null;
 let correctSolution = null;
 let score = 0;
 let shields = 5;
 let difficulty = localStorage.getItem("difficulty") || "easy";
-let playerName = localStorage.getItem("playerName") || "Adventurer";
 let timeLeft;
 let timerInterval;
 
@@ -14,11 +15,26 @@ let zombiePosition = 50;
 const manStep = 80;
 const zombieStep = 80;
 
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        userId = user.uid;
+        db.collection("users").doc(userId).get().then((doc) => {
+            if (doc.exists) {
+                username = doc.data().username;
+                document.getElementById("playerGreeting").textContent = `Welcome, ${username}!`;
+            }
+        }).catch((error) => {
+            console.error("Error fetching user data:", error);
+        });
+    } else {
+        console.log("No user logged in.");
+        window.location.href = "../html/LandingPage.html";
+    }
+});
 
 
 document.getElementById("man").style.transform = `translateX(${manPosition}px)`;
 document.getElementById("zombie").style.transform = `translateX(${zombiePosition}px)`;
-document.getElementById("playerGreeting").textContent = `Welcome, ${playerName}! Your challenge awaits.`;
 
 function fetchPuzzle() {
     fetch("https://marcconrad.com/uob/banana/api.php")
@@ -168,7 +184,6 @@ function increaseDifficulty() {
 }
 
 function resetGame() {
-    score = 0;
     shields = 5;
     manPosition = screenWidth / 2;
     zombiePosition = 50;
@@ -178,14 +193,54 @@ function resetGame() {
     document.getElementById("zombie").style.transform = `translateX(${zombiePosition}px)`;
     fetchPuzzle();
 }
+
 function goBack() {
     window.history.back();
     indow.location.href = "../html/GamePage.html";
 }
 
-function logout() {
-    localStorage.clear(); 
-    window.location.href = "../html/LandingPage.html"; 
+async function save_Score() {
+    if (!userId) {
+        console.error("No user ID found, cannot save score.");
+        return;
+    }
+    showPopup("Saving your Progress...");
+
+    const userRef = db.collection("users").doc(userId);
+    const scoresRef = db.collection("scores").doc();
+
+    try {
+        const doc = await userRef.get();
+        if (doc.exists) {
+            let userData = doc.data();
+            let highestScore = userData.highestScore || 0;
+            let totalScore = userData.totalScore || 0;
+            let gamesPlayed = userData.gamesPlayed || 0;
+
+            await userRef.update({
+                highestScore: Math.max(highestScore, score),
+                totalScore: totalScore + score,
+                gamesPlayed: gamesPlayed + 1
+            });
+            console.log("✅ User stats updated in Firestore");
+
+            await scoresRef.set({
+                userId: userId,
+                username: username,
+                score: score,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            console.log("✅ Score saved in scores collection");
+        } else {
+            console.error("❌ User document not found in Firestore");
+        }
+
+        window.location.href = "../html/LandingPage.html";
+
+    } catch (error) {
+        console.error("❌ Error saving score and logging out:", error);
+    }
 }
+
 updateShields();
 fetchPuzzle();
