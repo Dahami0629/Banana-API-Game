@@ -1,30 +1,101 @@
-function switchTab(tabId) {
-    document.querySelectorAll('.tab-content').forEach(tab => {
-      tab.classList.remove('active');
-    });
-    document.getElementById(tabId).classList.add('active');
+document.addEventListener("DOMContentLoaded", async () => {
+  const profileName = document.getElementById("profileName");
+  const profileEmail = document.getElementById("profileEmail");
+  const profileTotalScore = document.getElementById("profileTotalScore");
+  const profileHighestScore = document.getElementById("profileHighestScore");
+  const profileGamesPlayed = document.getElementById("profileGamesPlayed");
+  const profileAvatar = document.getElementById("profileAvatar");
+  const selectAvatar = document.getElementById("selectAvatar");
+  const avatarPopup = document.getElementById("avatarSelectionPopup");
+  const avatarOptions = document.getElementById("avatarOptions");
+  const closePopup = document.getElementById("closePopup");
+
+  if (!firebase.apps.length) {
+      console.error("❌ Firebase is not initialized.");
+      return;
   }
 
-  function saveProfile() {
-    const nameInput = document.getElementById('editName').value;
-    const emailInput = document.getElementById('editEmail').value;
-    const avatarInput = document.getElementById('editAvatar').files[0];
+  const auth = firebase.auth();
+  const db = firebase.firestore();
 
-    if (nameInput) document.getElementById('profileName').innerText = nameInput;
-    if (emailInput) document.getElementById('profileEmail').innerText = emailInput;
+  auth.onAuthStateChanged(async (user) => {
+      if (user) {
+          const userId = user.uid;
+          const userRef = db.collection("users").doc(userId);
 
-    if (avatarInput) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        document.getElementById('profileAvatar').src = e.target.result;
-      };
-      reader.readAsDataURL(avatarInput);
-    }
+          try {
+              const doc = await userRef.get();
+              if (doc.exists) {
+                  const data = doc.data();
+                  profileName.textContent = data.username || "Unknown";
+                  profileEmail.textContent = data.email || "No Email";
+                  profileTotalScore.textContent = data.totalScore || 0;
+                  profileHighestScore.textContent = data.highestScore || 0;
+                  profileGamesPlayed.textContent = data.gamesPlayed || 0;
 
-    switchTab('profileTab');
+                  
+                  if (data.profileImage) {
+                      profileAvatar.src = data.profileImage;
+                  }
+              } else {
+                  console.error("❌ User document not found.");
+              }
+          } catch (error) {
+              console.error("❌ Error fetching user data:", error);
+          }
+      } else {
+          console.error("❌ No user logged in.");
+          window.location.href = "../html/SignupPage.html";
+      }
+  });
+
+  
+  async function loadAvatars() {
+      try {
+          const avatarsRef = db.collection("avatars");
+          const snapshot = await avatarsRef.get();
+
+          avatarOptions.innerHTML = ""; 
+
+          snapshot.forEach((doc) => {
+              const avatarData = doc.data();
+              const img = document.createElement("img");
+              img.src = avatarData.url;
+              img.alt = "Avatar";
+              img.addEventListener("click", async () => {
+                  await updateUserAvatar(auth.currentUser.uid, avatarData.url);
+              });
+
+              avatarOptions.appendChild(img);
+          });
+      } catch (error) {
+          console.error("❌ Error loading avatars:", error);
+      }
   }
 
-  function logout() {
-    alert("Logging out...");
-    window.location.href = "LandingPage.html";
+  
+  async function updateUserAvatar(userId, avatarUrl) {
+      try {
+          await db.collection("users").doc(userId).update({
+              profileImage: avatarUrl
+          });
+
+          profileAvatar.src = avatarUrl;
+          console.log("✅ Avatar updated successfully!");
+          avatarPopup.classList.add("hidden");
+      } catch (error) {
+          console.error("❌ Error updating avatar:", error);
+      }
   }
+
+  
+  selectAvatar.addEventListener("click", async () => {
+      avatarPopup.classList.remove("hidden");
+      await loadAvatars();
+  });
+
+ 
+  closePopup.addEventListener("click", () => {
+      avatarPopup.classList.add("hidden");
+  });
+});
