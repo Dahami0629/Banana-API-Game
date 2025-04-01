@@ -1,8 +1,8 @@
-/* Apply a background image with a blur effect */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap');
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Fredoka', sans-serif;
   background: url('/assests/ImagesNew/Desktop6.jpg') no-repeat center center/cover;
   display: flex;
   justify-content: center;
@@ -42,7 +42,7 @@ body {
   backdrop-filter: blur(12px);
   color: rgb(4, 4, 4);
   width: 600px;
-  height: 300px;
+  height: 350px;
   margin-top: 130px;
 }
 
@@ -51,6 +51,7 @@ body {
 }
 
 .avatar {
+  position: relative;
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -59,11 +60,62 @@ body {
   border: 3px solid white;
 }
 
-.avatar img {
+.avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
 }
+
+.avatar-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar-options {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.avatar-options img {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.avatar-options img:hover {
+  transform: scale(1.2);
+}
+
+.hidden {
+  display: none;
+}
+
+
+.camera-icon {
+  position: absolute;
+  bottom: 2px;
+  right: 5px;
+  background-color: white;
+  border-radius: 50%;
+  padding: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
 
 h1, p {
   margin: 5px 0;
@@ -72,96 +124,41 @@ h1, p {
 .profile-stats {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 20px;
+  gap: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .stat-item {
+  flex: 1;
   text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  background: white;
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.stat-value {
-  font-size: 20px;
-  font-weight: bold;
+.stat-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .stat-label {
-  font-size: 14px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #6c757d;
+  margin-bottom: 5px; 
 }
 
-.profile-actions button {
-  background: #ff4b5c;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.3s;
-  margin: 5px;
-}
-
-.profile-actions button:hover {
-  background: #ff1c3d;
-}
-
-.logout-btn {
-  background: #333;
-}
-
-.logout-btn:hover {
-  background: #222;
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-form input {
-  width: 90%;
-  padding: 10px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-.editbtn {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-}
-
-.editbtn button {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.3s;
-  margin: 0 5px;
-}
-
-.editbtn button:first-child {
-  background: #28a745;
-  color: white;
-}
-
-.editbtn button:first-child:hover {
-  background: #218838;
-}
-
-.editbtn button:last-child {
-  background: #dc3545;
-  color: white;
-}
-
-.editbtn button:last-child:hover {
-  background: #c82333;
+.stat-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff; 
 }
 
 @media (max-width: 400px) {

@@ -5,20 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zombie City Last Survivor</title>
   <link rel="stylesheet" href="/CSS/LandingPage.css">
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
   <div class="background">
-    
     <div class="loading-bar" id="loadingBar">
         <div id="loadingProgress"></div>
     </div>
 
     <div class="buttons">
       <button id="menuBtn" class="menu-btn">Menu</button>
-        <button id="startBtn " href="/html/SignupPage.html" class="start-btn">Play</button>
-        <button id="muteBtn" class="muteBtn">Mute</button> 
-       
+      <button id="startBtn" class="start-btn">Play</button>
+      <button id="muteBtn" class="muteBtn">Mute</button>
+      <button id="logoutBtn" class="logout-btn" onclick="logout()">Logout</button> 
     </div>
   </div>
 
@@ -27,31 +30,28 @@
       <span class="close" id="closeMenuBtn">&times;</span>
       <h3>Menu</h3>
       <ul>
+        <li><button id="UserProfileBtn" onclick="window.location.href='../html/UserProfile.html'" class="modal-btn">Profile</button></li>
         <li><button id="leaderboardBtn" onclick="window.location.href='../html/Leaderboard.html'" class="modal-btn">Leaderboard</button></li>
         <li><button id="instructionsBtn" class="modal-btn">Game Instructions</button></li>
-        
-
       </ul>
     </div>
   </div>
-
-  
 
   <div id="instructionsModal" class="modal">
     <div class="modal-content">
       <span class="close" id="closeInstructionsBtn">&times;</span>
       <h2>Game Instructions</h2>
-      <p>1. Select level</p>
-     
-      <p>2. Solve puzzles to progress.</p>
+      <p>1. Click Play Button</p>
+      <p>2. Select level</p>
+      <p>3. Solve puzzles to progress.</p>
     </div>
   </div>
 
   <audio id="backgroundMusic" loop>
     <source src="../assests/bg-music.mp3" type="audio/mpeg">
-    
   </audio>
 
-  <script src="/JS/Landing.js"></script>
-<body>
+  <script src="../config/config.js"></script>
+  <script src="../JS/Landing.js"></script>
+</body>
 </html>

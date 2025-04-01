@@ -6,66 +6,50 @@
   <title>User Profile</title>
   <link rel="stylesheet" href="/CSS/UserProfile.css">
   
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script> 
 </head>
 <body>
- 
+
   <div class="background">
-    
     <div class="profile-container">
       <a href="/html/LandingPage.html" class="back-icon">🡰</a>
       
       <div id="profileTab" class="tab-content active">
-        
         <div class="profile-header">
           <div class="avatar">
-            <img src="" alt="" class="avatar-img" id="profileAvatar">
-          </div>
-          <h1 id="profileName">Dahami</h1>
-          <p id="profileEmail">dahami@gmail.com</p>
+            <img src="../assests/ImagesNew/zombie1.png" alt="Profile Avatar" class="avatar-img" id="profileAvatar">
+            <label class="camera-icon" id="selectAvatar">📷</label>
+          </div>          
+          <div id="avatarSelectionPopup" class="avatar-popup hidden">
+            <h3>Select Your Avatar</h3>
+            <div id="avatarOptions" class="avatar-options"></div>
+            <button id="closePopup">Close</button>
+          </div>      
+          <h1 id="profileName">Loading...</h1>
+          <p id="profileEmail">Loading...</p>
         </div>
-
-        
         <div class="profile-stats">
           <div class="stat-item">
-            <span class="stat-value" id="profilePoints">1000</span>
-            <span class="stat-label">Points</span>
+            <span class="stat-label">Total Score</span>
+            <span class="stat-value" id="profileTotalScore">0</span>
           </div>
           <div class="stat-item">
-            <span class="stat-value" id="profileAchievements">2</span>
-            <span class="stat-label">Achievements</span>
+            <span class="stat-label">Highest Score</span>
+            <span class="stat-value" id="profileHighestScore">0</span>
           </div>
           <div class="stat-item">
-            <span class="stat-value" id="profileLevels">4</span>
-            <span class="stat-label">Levels Completed</span>
+            <span class="stat-label">Games Played</span>
+            <span class="stat-value" id="profileGamesPlayed">0</span>
           </div>
-        </div>
-
-        
-        <div class="profile-actions">
-          <button onclick="switchTab('editTab')">Edit Profile</button>
-          <button class="logout-btn" onclick="logout()">Log Out</button>
-        </div>
-      </div>
-
-      
-      <div id="editTab" class="tab-content">
-        <h2>Edit Profile</h2>
-        <form id="profileForm">
-         
-          <input type="text" id="editName" placeholder="Enter your name">
-          <input type="email" id="editEmail" placeholder="Enter your email">
-          <input type="file" id="editAvatar" accept="image/*">
-          <div class="editbtn">
-          <button type="button" onclick="saveProfile()">Save Changes</button>
-          <button type="button" onclick="switchTab('profileTab')">Cancel</button>
-          </div>
-        </form>
+        </div>              
       </div>
     </div>
   </div>
 
-  
-  <script src="/JS/UserProfile.js">
-  </script>
+  <script src="../config/config.js"></script>
+  <script src="/JS/UserProfile.js"></script>
 </body>
 </html>

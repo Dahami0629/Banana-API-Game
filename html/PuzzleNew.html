@@ -5,17 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banana Quest - Puzzle</title>
     <link rel="stylesheet" href="/CSS/PuzzleNew.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 </head>
 <body id="puzzleBody">
 
     <div class="nav-buttons">
         <button onclick="goBack()" class="nav-btn">🡰 Back</button>
-        <button onclick="logout()" class="nav-btn logout-btn">🚪 Logout</button>
+        <button onclick="save_Score()" class="nav-btn logout-btn">🚪 Quit</button>
        
     </div>
     <div id="gameContainer" class="container">
         <h1>🍌 Banana Quest</h1>
-        <h3 id="playerGreeting"></h3>
+        <h3 id="playerGreeting">Welcome</h3>
         <p id="score">Score: 0</p>
         <p id="timer">⏳ Time Left: <span id="timeLeft"></span> seconds</p>
         <img id="puzzleImage" src="" alt="Loading puzzle...">
@@ -43,7 +47,7 @@
     <div id="car">
         <img src="/assests/ImagesNew/car.png" alt="car" width="250px">
     </div>
-
-    <script src="/JS/Puzzle.js"></script>
+    <script src="../config/config.js"></script>
+    <script src="../JS/Puzzle.js"></script>
 </body>
 </html>

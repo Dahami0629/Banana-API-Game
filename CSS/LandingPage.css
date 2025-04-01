@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -56,7 +57,8 @@ body {
     margin-top: 500px;
 }
 
-.start-btn, .menu-btn {
+.start-btn, .menu-btn, .logout-btn {
+    font-family: 'Fredoka', sans-serif;
     padding: 6px 15px;
     font-size: 20px;
     border: 2px solid #0a0909;
@@ -73,17 +75,18 @@ body {
     
     
 }
+
 .menu-btn{
     background-color: blue;
 }
-.start-btn:hover, .menu-btn:hover {
+.start-btn:hover, .menu-btn:hover, .logout-btn:hover {
     background-color: #ff6f61;
     color: #0b0a0a;
     transform: skewX(-15deg) scale(1.1);
     box-shadow: 0 0 15px rgb(20, 1, 1);
 }
 
-.start-btn:active, .menu-btn:active {
+.start-btn:active, .menu-btn:active, .logout-btn:active {
     transform: skewX(15deg) scale(1);
     box-shadow: 0 0 10px rgba(255, 111, 97, 0.5);
 }
@@ -106,43 +109,76 @@ body {
 }
 
 .muteBtn:hover {
-    background-color: rgba(255, 0, 0, 0.8);
+    background-color: #ff6f61;
+    color: #0b0a0a;
+    transform: skewX(-15deg) scale(1.1);
+    box-shadow: 0 0 15px rgb(20, 1, 1);
 }
 
-
-
 .modal {
-    display: none;
-    position: fixed;
-    top: 50%;
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
     left: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 500px;
-    background-color: rgba(20, 20, 20, 0.9);
-    color: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
-    z-index: 1000;
+    width: 80%;
+    max-width: 400px;
+    background: rgba(20, 20, 20, 0.95);
+    border: 3px solid #8b0000;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
     text-align: center;
-    backdrop-filter: blur(5px);
+    font-family: 'Creepster', cursive;
+}
+
+.modal-content {
+    position: relative;
+    color: #fff;
 }
 
 .close {
     position: absolute;
-    top: 15px;
+    top: 10px;
     right: 15px;
-    color: #fff;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 28px;
+    color: #ff0000;
     cursor: pointer;
-    transition: color 0.3s ease-in-out;
+    transition: 0.3s;
 }
 
 .close:hover {
-    color: #ff4757;
-    transform: scale(1.1);
+    color: #ff6347;
 }
 
+.modal h3 {
+    font-size: 26px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 10px rgba(255, 0, 0, 0.8);
+}
 
+.modal-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(45deg, #8b0000, #4c0000);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 2px 2px 5px black;
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.6);
+    font-family: 'Fredoka', sans-serif;
+}
+
+.modal-btn:hover {
+    background: linear-gradient(45deg, #ff0000, #8b0000);
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(255, 0, 0, 0.9);
+}

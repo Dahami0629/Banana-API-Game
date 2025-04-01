@@ -71,6 +71,23 @@ body {
     display: none;
 }
 
+#signupForm {
+    position: absolute;
+    top: 19%;
+}
+
+.sign_title {
+    position: absolute;
+    left: 45%;
+    bottom: 93%;
+}
+
+#google {
+    position: absolute;
+    right: 34%;
+    top: 75.5%;
+}
+
 .form.active {
     display: block;
     animation: fadeIn 0.5s ease-in-out;
