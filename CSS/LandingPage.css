@@ -19,7 +19,7 @@ body {
 
 .background {
     position: relative;
-    background-image: url("/assests/ImagesNew/Desktop2.jpg");
+    background-image: url("/assests/ImagesNew/index_bg.png");
     background-size: cover;
     background-position: center;
     width: 100%;
