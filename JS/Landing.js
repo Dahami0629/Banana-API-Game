@@ -108,3 +108,21 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
+  let inactivityChecker;
+
+  function resetInactivityTimer() {
+      clearTimeout(inactivityChecker);
+      inactivityChecker = setTimeout(() => {
+          auth.signOut().then(() => {
+              localStorage.clear();
+              alert("You have been logged out due to inactivity.");
+              window.location.href = "SignupPage.html";
+          });
+      }, 1 * 60 * 1000);
+  }
+  
+  document.addEventListener("mousemove", resetInactivityTimer);
+  document.addEventListener("keydown", resetInactivityTimer);
+  document.addEventListener("click", resetInactivityTimer);
+  
+  resetInactivityTimer();
