@@ -36,6 +36,8 @@ auth.onAuthStateChanged((user) => {
 document.getElementById("man").style.transform = `translateX(${manPosition}px)`;
 document.getElementById("zombie").style.transform = `translateX(${zombiePosition}px)`;
 
+//Get idea from chatgpt(To call the API):https://chatgpt.com/
+//https://youtu.be/AeYPcVSS_Nc?si=jzf8TWgKlBvk7pKS
 function fetchPuzzle() {
     fetch("https://marcconrad.com/uob/banana/api.php")
         .then(response => response.json())
@@ -136,7 +138,7 @@ function moveMan() {
         }
     }
 }
-
+//Movments on animations:https://stackoverflow.com/questions/58559992/how-to-move-element-from-one-point-to-another-with-animation
 function moveZombie() {
     if (zombiePosition >= manPosition - 100) {
         endGame();
@@ -199,6 +201,8 @@ function goBack() {
     indow.location.href = "../html/GamePage.html";
 }
 
+//Save user scores and calculate highest score:https://youtu.be/NSnbUfG3_NY?si=kbjAlNVJtMDERe7H
+// https://stackoverflow.com/questions/52746838/how-to-continue-the-game-from-the-score-saved-in-firebase-database-android-app
 async function save_Score() {
     if (!userId) {
         console.error("No user ID found, cannot save score.");

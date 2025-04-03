@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const auth = firebase.auth();
   const db = firebase.firestore();
 
+  //Get data from user profiles:https://youtu.be/y4npeX35B34?si=0nJLJZfhQ-cXo2Ny
   auth.onAuthStateChanged(async (user) => {
       if (user) {
           const userId = user.uid;
@@ -49,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
   });
 
-  
+  //Save Username and Profile Picture with Firebase:https://youtu.be/ymnKQVLs93c?si=sIC_Fmw_pKRW2u83
   async function loadAvatars() {
       try {
           const avatarsRef = db.collection("avatars");

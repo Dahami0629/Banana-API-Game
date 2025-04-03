@@ -1,3 +1,4 @@
+//Save user scores and calculate highest score:https://youtu.be/NSnbUfG3_NY?si=kbjAlNVJtMDERe7H
 document.addEventListener("DOMContentLoaded", async () => {
     const leaderboardList = document.querySelector(".leaderboard-list");
 

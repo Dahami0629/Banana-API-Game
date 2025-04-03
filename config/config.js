@@ -1,10 +1,10 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyBQz9gSzz50FijPLyBRK5erspnQ7tmOetE",
-    authDomain: "banana-api-game-bed67.firebaseapp.com",
-    projectId: "banana-api-game-bed67",
-    storageBucket: "banana-api-game-bed67.firebasestorage.app",
-    messagingSenderId: "754732833864",
-    appId: "1:754732833864:web:4feb779fb4b7a435304c7d"
+  apiKey: "AIzaSyDdkVQykQ3onKpSkcCe6wHiBLrFO-DiYtc",
+  authDomain: "banana-api-new-game.firebaseapp.com",
+  projectId: "banana-api-new-game",
+  storageBucket: "banana-api-new-game.firebasestorage.app",
+  messagingSenderId: "243512714827",
+  appId: "1:243512714827:web:6d6fbea27944a14ec54fce"
   };
   
 

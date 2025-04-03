@@ -2,8 +2,30 @@ Image Generation and Creation
 
 https://www.freepik.com/ai/image-generator
 https://www.figma.com/
+https://deepai.org/
 
-Sound Tracks
+Sound Track
 
-https://pixabay.com/sound-effects/search/zombie/
+Background Sound: https://pixabay.com/sound-effects/search/zombie/
+
+Firebase Authentication
+
+SignUp Page: https://youtu.be/WM178YopjfI?si=ETdOqk7hxNIzXD79
+Firebase Web Login and Signup Using JavaScript:https://youtu.be/flsPuZp6aTE?si=RhzEODB57fhSDcYW
+Save user scores and calculate highest score:https://youtu.be/NSnbUfG3_NY?si=kbjAlNVJtMDERe7H
+Save Username and Profile Picture with Firebase:https://youtu.be/ymnKQVLs93c?si=sIC_Fmw_pKRW2u83
+Google Signin with firebase:https://youtu.be/Uhbn1KmiNbg?si=SCcDR7nfzzbipVuA
+Get data from user profiles:https://youtu.be/y4npeX35B34?si=0nJLJZfhQ-cXo2Ny
+
+Code Parts (HTML, JavaScript)
+
+https://www.w3schools.com/graphics/game_sound.asp
+https://apidog.com/blog/use-api-in-html/
+https://stackoverflow.com/questions/58559992/how-to-move-element-from-one-point-to-another-with-animation
+https://stackoverflow.com/questions/52746838/how-to-continue-the-game-from-the-score-saved-in-firebase-database-android-app
+https://youtu.be/AeYPcVSS_Nc?si=jzf8TWgKlBvk7pKS
+https://chatgpt.com/
+https://www.w3schools.com/html/html5_audio.asp
+https://www.w3schools.com/js/js_timing.asp
+
 

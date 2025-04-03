@@ -1,4 +1,5 @@
-
+//Get idea to Signup and Login Form in HTML with Firebase:https://youtu.be/WM178YopjfI?si=ETdOqk7hxNIzXD79
+//Firebase Web Login and Signup Using JavaScript:https://youtu.be/flsPuZp6aTE?si=RhzEODB57fhSDcYW
 function showForm(formType) {
     document.getElementById('loginForm').classList.remove('active');
     document.getElementById('signupForm').classList.remove('active');
@@ -98,7 +99,7 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     });
 });
 
-//Google Sign In option
+//Google Signin with firebase:https://youtu.be/Uhbn1KmiNbg?si=SCcDR7nfzzbipVuA
 const googleSignInBtn = document.getElementById("googleSignInBtn");
 
 googleSignInBtn.addEventListener("click", async () => {
