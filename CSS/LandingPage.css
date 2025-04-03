@@ -19,7 +19,7 @@ body {
 
 .background {
     position: relative;
-    background-image: url("/assests/ImagesNew/index_bg.png");
+    background-image: url("/assests/ImagesNew/index_bg_resized.jpg");
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -72,6 +72,8 @@ body {
     animation: flicker 1s infinite;
     margin-right: 50px;
     margin-top: 22px;
+    width: 200px;
+    height: 80px;
     
     
 }
